@@ -25,9 +25,15 @@ public class GenericLoggingHandler implements InvocationHandler {
     }
 
     public Object invoke(Object proxy, Method method, Object[] args) throws Throwable {
-
         try {
             Object r = method.invoke(target, args);
+
+            // 1. check is allowed muitl driver
+            if (ConfigurationParameters.allowedMultiDbs) {
+                // 2. reload when connection
+                ConfigurationParameters.reloadRdbmsSpecificsFromConnection(target.getClass().getName());
+            }
+
             if (method.getName().equals("prepareCall") || method.getName().equals("prepareStatement"))
                 r = wrap(r, (String) args[0]);
             else

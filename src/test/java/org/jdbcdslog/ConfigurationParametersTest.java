@@ -15,6 +15,7 @@ public class ConfigurationParametersTest {
         assertEquals("slowQueryThreshold", 1000L, ConfigurationParameters.slowQueryThreshold);
         assertTrue("logText", ConfigurationParameters.logText);
         assertTrue("showTime", ConfigurationParameters.showTime);
+        assertTrue("allowedMultiDbs", ConfigurationParameters.allowedMultiDbs);
         assertTrue("printStackTrace", ConfigurationParameters.printStackTrace);
         assertTrue("rdbmsSpecifics", ConfigurationParameters.rdbmsSpecifics instanceof OracleRdbmsSpecifics);
     }
